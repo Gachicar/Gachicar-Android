@@ -9,7 +9,6 @@ import com.example.gachicarapp.retrofit.response.ReserveData
 import com.example.gachicarapp.retrofit.response.UpdateGroupDesc
 import com.example.gachicarapp.retrofit.response.UpdateGroupName
 import com.example.gachicarapp.retrofit.response.getCarInfo
-import com.example.gachicarapp.retrofit.response.socialSignUpandLogin
 import com.example.gachicarapp.retrofit.response.statistic_r_Response
 import retrofit2.Call
 import retrofit2.http.*
