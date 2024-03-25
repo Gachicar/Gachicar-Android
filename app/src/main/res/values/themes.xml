@@ -2,17 +2,19 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.GachiCar" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/tabBarBackgroundColor</item>
-        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorPrimary">@color/blue_light</item>
+        <item name="colorPrimaryVariant">@color/sky_blue</item>
 
         <!-- Background color. -->
         <item name="android:windowBackground">#FFFFFF</item>
 
         <!-- Text color. -->
         <item name="android:textColorPrimary">@color/black</item>
-        <item name="android:textColorSecondary">@color/buttom_color</item>
+        <item name="android:textColorSecondary">@color/black_light</item>
 
         <!-- Other customizations can be added here. -->
+        <item name="android:fontFamily">@font/nanum_barun_gothic</item>
+
     </style>
 
     <style name="Theme.GachiCar" parent="Base.Theme.GachiCar" />

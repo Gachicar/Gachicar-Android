@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
         android:text="상세 보기"
+        android:background="@drawable/btn_color"
         app:layout_constraintBottom_toBottomOf="@id/tv_location_title"
         app:layout_constraintStart_toEndOf="@id/tv_location_title"
         app:layout_constraintTop_toTopOf="@id/tv_location_title" />

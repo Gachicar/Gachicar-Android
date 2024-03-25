@@ -3,10 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="splash_color">#FFFFFF</color>
+    <color name="sky_blue">#DAE8FF</color>
+    <color name="blue_light">#99BFFF</color>
     <color name="blue">#2196F3</color>
     <color name="dark_blue">#3862E1</color>
     <color name="light_blue">#112B7E</color>
-    <color name="dark_gray">#355EDD</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="dark_gray">#CCCCCC</color>
+    <color name="black_light">#797979</color>
     <color name="tabBarBackgroundColor">#2C6CD9</color>
-    <color name="buttom_color">#99BFFF</color>
+
 </resources>
