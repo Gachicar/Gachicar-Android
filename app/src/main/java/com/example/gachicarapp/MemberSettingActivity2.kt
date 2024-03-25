@@ -1,8 +1,8 @@
 package com.example.gachicarapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gachicarapp.databinding.ActivityStep01Binding
 import com.example.gachicarapp.databinding.ActivityStep02Binding
 
 class MemberSettingActivity2 : AppCompatActivity() {
@@ -14,7 +14,10 @@ class MemberSettingActivity2 : AppCompatActivity() {
         binding = ActivityStep02Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 여기서 바인딩을 사용하여 뷰에 액세스
-        // 예: binding.textView.text = "Hello World!"
+        binding.step2nextbtn.setOnClickListener {
+            val intent = Intent(this, MemberSettingActivity3::class.java)
+            startActivity(intent)
+        }
+
     }
 }
