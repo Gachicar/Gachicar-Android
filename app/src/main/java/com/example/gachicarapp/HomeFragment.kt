@@ -1,5 +1,6 @@
 package com.example.gachicarapp
 
+import ReservationListFragment
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +46,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         reportRetrofitAPI = RetrofitConnection.getInstance(requireContext()).create(ReportService::class.java)
         getMostUserInGroup()
+
+        // 예약 내역 조회하기 버튼에 클릭 리스너 설정
+        binding.btnViewReservation.setOnClickListener {
+            // 예약 내역 조회하기 버튼이 클릭되었을 때 ReservationListFragment로 이동
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, ReservationListFragment())
+            transaction.addToBackStack(null) // 백스택에 추가하여 이전 Fragment로 돌아갈 수 있도록 함
+            transaction.commit()
+        }
     }
 
     private fun getMostUserInGroup() {

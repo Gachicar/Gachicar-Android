@@ -13,7 +13,7 @@
         <item name="android:textColorSecondary">@color/black_light</item>
 
         <!-- Other customizations can be added here. -->
-        <item name="android:fontFamily">@font/nanum_barun_gothic</item>
+<!--        <item name="android:fontFamily">@font/nanum_barun_gothic</item>-->
 
     </style>
 

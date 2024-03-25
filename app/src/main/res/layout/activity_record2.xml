@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
     <LinearLayout
@@ -245,5 +246,17 @@
             android:scrollbars="vertical"/>
     </LinearLayout>
         </LinearLayout>
+
+        <!-- 예약 내역 조회하기 버튼 -->
+        <Button
+            android:id="@+id/btnViewReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예약 내역 조회하기"
+            app:layout_constraintTop_toBottomOf="@id/tvFrequentUser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:onClick="onViewReservationClicked" />
 </LinearLayout>
 </ScrollView>
