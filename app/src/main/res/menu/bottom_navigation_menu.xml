@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_voice"
+        android:icon="@drawable/off_voice_ic"
+        android:title="음성인식" />
+    <item
+        android:id="@+id/nav_stats"
+        android:icon="@drawable/off_stats_ic"
+        android:title="통계" />
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_ic"
+        android:title="홈" />
+    <item
+        android:id="@+id/nav_notifications"
+        android:icon="@drawable/off_alarm_ic"
+        android:title="알림" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/off_profile_ic"
+        android:title="마이페이지" />
+</menu>

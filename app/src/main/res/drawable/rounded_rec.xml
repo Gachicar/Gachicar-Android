@@ -1,0 +1,9 @@
+<!-- drawable/rounded_background_for_leader.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <size
+        android:width="200dp"
+        android:height="200dp"/>
+    <solid android:color="#DAE8FF" />
+    <corners android:radius="30dp" />
+</shape>

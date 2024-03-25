@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="splash_color">#FFFFFF</color>
+    <color name="blue">#2196F3</color>
+    <color name="dark_blue">#3862E1</color>
+    <color name="light_blue">#112B7E</color>
+    <color name="dark_gray">#355EDD</color>
+    <color name="tabBarBackgroundColor">#2C6CD9</color>
+    <color name="buttom_color">#99BFFF</color>
+</resources>

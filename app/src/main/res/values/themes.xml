@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GachiCar" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/tabBarBackgroundColor</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+
+        <!-- Background color. -->
+        <item name="android:windowBackground">#FFFFFF</item>
+
+        <!-- Text color. -->
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/buttom_color</item>
+
+        <!-- Other customizations can be added here. -->
+    </style>
+
+    <style name="Theme.GachiCar" parent="Base.Theme.GachiCar" />
+
+    <style name="SplashActivity" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

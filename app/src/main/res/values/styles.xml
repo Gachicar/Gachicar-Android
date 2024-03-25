@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- themes-themes.xml 내에 Theme.YourApp.NoActionBar 정의 -->
+    <style name="Theme.GachiCar..NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- 여기에 앱의 기본 스타일 속성 추가 -->
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+    </style>
+
+</resources>
