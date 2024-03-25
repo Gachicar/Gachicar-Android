@@ -9,4 +9,9 @@ interface ReportService {
 
     @GET("/api/report/most")
     fun getMostUserInGroup(): Call<ApiResponse<MostUser>>
+
+
+
+//    @GET("/api/report/usage")
+//    fun getUsersUsageCounts(): Call<ApiResponse<>>
 }
