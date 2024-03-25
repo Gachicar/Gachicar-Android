@@ -1,6 +1,7 @@
 package com.example.gachicarapp
 
 import android.app.Application
+import com.example.gachicarapp.BuildConfig.NATIVE_APP_KEY
 import com.kakao.sdk.common.KakaoSdk
 
 
@@ -10,6 +11,6 @@ class MyApplication : Application() {
         // 다른 초기화 코드들
 
         // Kakao SDK 초기화
-        KakaoSdk.init(this, "28a522b262a00e932f756d5de1b698a7")
+        KakaoSdk.init(this, NATIVE_APP_KEY)
     }
 }

@@ -1,7 +1,17 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 
+}
+
+val properties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { input ->
+        properties.load(input)
+    }
 }
 
 android {
@@ -18,10 +28,20 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        // local.properties 파일에서 변수를 읽어와서 buildConfigField로 사용
+        buildConfigField("String", "NATIVE_APP_KEY", "${properties["NATIVE_APP_KEY"]}")
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "${properties["KAKAO_NATIVE_APP_KEY"]}")
+        manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = "${properties["KAKAO_NATIVE_APP_KEY"]}"
+        manifestPlaceholders["NATIVE_APP_KEY"] = "${properties["NATIVE_APP_KEY_NO_QUOTES"]}"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -80,5 +100,8 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation ("com.squareup.okhttp3:okhttp-sse:4.12.0")
+
+    // Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
 }

@@ -22,7 +22,7 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun getGroupData() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(this).create(AppServices::class.java)
 
         // API 호출
         retrofitAPI.getGroupInfo().enqueue(object : Callback<GetGroupInfo> {

@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getGroupData()
 
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
 
         binding.inviteNewMember.setOnClickListener {
             val intent = Intent(activity, EditMActivity::class.java)
@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getGroupData() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
 
         // API 호출
         retrofitAPI.getGroupInfo()
@@ -84,7 +84,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getReportData() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
 
         // API 호출
         retrofitAPI.getDriveReport()

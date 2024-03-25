@@ -54,7 +54,7 @@ class StatsFragment : Fragment() {
     }
 
     private fun getFuelQualityData() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
 
         retrofitAPI.getFuelData().enqueue(object : Callback<statistic_r_Response> {
             override fun onResponse(call: Call<statistic_r_Response>, response: Response<statistic_r_Response>) {
