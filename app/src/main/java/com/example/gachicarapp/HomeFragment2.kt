@@ -8,8 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.gachicarapp.databinding.FragmentHomeBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
+import com.example.gachicarapp.retrofit.response.ApiResponse
+import com.example.gachicarapp.retrofit.response.MostUser
 import com.example.gachicarapp.retrofit.response.getCarInfo
 import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +20,8 @@ import retrofit2.Response
 class HomeFragment2 : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val carRetrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,9 +37,9 @@ class HomeFragment2 : Fragment() {
     }
 
     private fun getCarInfo() {
-        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
+
         // API 호출
-        retrofitAPI.getCarHomeInfo()
+        carRetrofitAPI.getCarHomeInfo()
             .enqueue(object : Callback<getCarInfo> {
                 override fun onResponse(call: Call<getCarInfo>, response: Response<getCarInfo>) {
                     if (response.isSuccessful) {
