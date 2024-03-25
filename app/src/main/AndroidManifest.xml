@@ -24,7 +24,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/SplashActivity">
             <intent-filter>
@@ -64,9 +64,9 @@
             android:exported="true"/>
         <activity android:name=".AlarmActivity"
             android:exported="true"/>
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="true" />-->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
 
     </application>
 

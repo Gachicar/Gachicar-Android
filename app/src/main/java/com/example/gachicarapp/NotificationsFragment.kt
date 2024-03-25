@@ -32,7 +32,7 @@ class NotificationsFragment : Fragment() {
     }
 
     private fun getReserve() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
 
         // API 호출
         retrofitAPI.getReserveData()

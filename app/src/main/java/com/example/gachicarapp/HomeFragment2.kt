@@ -32,7 +32,7 @@ class HomeFragment2 : Fragment() {
     }
 
     private fun getCarInfo() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
         // API 호출
         retrofitAPI.getCarHomeInfo()
             .enqueue(object : Callback<getCarInfo> {

@@ -23,7 +23,7 @@ class ReportActivity : AppCompatActivity() {
     }
 
     private fun getReportData() {
-        val retrofitAPI = RetrofitConnection.getInstance().create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(this).create(AppServices::class.java)
 
         // API 호출
         retrofitAPI.getDriveReport()

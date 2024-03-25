@@ -16,10 +16,6 @@ import retrofit2.http.*
 
 
 interface AppServices {
-    // 로그인 관련 API
-    @POST("/api/auth/social")
-    fun token(@Header("Authorization") accessToken: String): Call<socialSignUpandLogin>
-
 
     // Group 관련 API
     @POST("/api/group")

@@ -1,5 +1,6 @@
 package com.example.gachicarapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.socialSignUpandLogin
-import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.service.LoginService
 import com.kakao.sdk.user.UserApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
                     // Handle error
                 } else if (token != null) {
                     kaKaoAuthViewModel.updateLoginState(true)
-                    sendTokenToServer(token.accessToken)
+                    sendTokenToServer(accessToken = token.accessToken, refreshToken = token.refreshToken)
                 }
             }
         }
@@ -51,8 +52,17 @@ class LoginActivity : AppCompatActivity() {
         logoutButton.setOnClickListener { kaKaoAuthViewModel.kakoLogout() }
     }
 
-    private fun sendTokenToServer(accessToken: String) {
-        val service = RetrofitConnection.getInstance().create(AppServices::class.java)
+    private fun sendTokenToServer(accessToken: String, refreshToken: String) {
+        // 액세스 토큰과 리프레시 토큰을 SharedPreferences에 저장
+        val sharedPreferences = getSharedPreferences("tokens", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("access_token", accessToken)
+        editor.putString("refresh_token", refreshToken)
+        editor.apply()
+
+        // 서버로 액세스 토큰 전송
+        val service = RetrofitConnection.getInstance(this).create(LoginService::class.java)
+//        val service = RetrofitConnection.getInstance().create(LoginService::class.java)
         val call = service.token("Bearer $accessToken")
 
         call.enqueue(object : Callback<socialSignUpandLogin> {
@@ -72,6 +82,7 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
