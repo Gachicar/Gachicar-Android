@@ -1,16 +1,12 @@
 package com.example.gachicarapp
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.gachicarapp.KaKaoAuthViewModel.Companion.TAG
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.SocialSignUpandLogin
 import com.example.gachicarapp.retrofit.service.LoginService
@@ -22,7 +18,6 @@ import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
 
-    private val kaKaoAuthViewModel: KaKaoAuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_GachiCar)
@@ -30,15 +25,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val loginButton: ImageButton = findViewById(R.id.loginButton)
-        val logoutButton: Button = findViewById(R.id.logoutButton)
-        val statusTextView: TextView = findViewById(R.id.statusTextView)
-
-        // Observe the login state and update UI accordingly
-        lifecycleScope.launchWhenStarted {
-            kaKaoAuthViewModel.isLoggedIn.collect { isLoggedIn ->
-                statusTextView.text = if (isLoggedIn) "로그인 상태" else "로그아웃 상태"
-            }
-        }
 
         loginButton.setOnClickListener {
             UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
@@ -46,18 +32,16 @@ class LoginActivity : AppCompatActivity() {
                     // Handle error
                 } else if (token != null) {
                     Timber.tag(TAG).e("로그인 성공 %s", token.accessToken)
-                    kaKaoAuthViewModel.updateLoginState(true)
                     sendTokenToServer(token.accessToken)
                 }
             }
         }
 
-        logoutButton.setOnClickListener { kaKaoAuthViewModel.kakoLogout() }
     }
 
     private fun sendTokenToServer(accessToken: String) {
         // Retrofit을 통해 서버와 통신하기 위한 서비스 생성
-        val service = RetrofitConnection.getInstance(this).create(LoginService::class.java)
+        val service = RetrofitConnection.getInstanceWithoutToken(this).create(LoginService::class.java)
 
         // 서버로 전송할 액세스 토큰을 헤더에 추가하여 요청을 생성
         val call = service.token("Bearer $accessToken")
