@@ -62,7 +62,7 @@ class TokenInterceptor(private val context: Context, private val loginService: L
     }
 
     private fun requestNewAccessToken(refreshToken: String): String? {
-        val loginService = RetrofitConnection.getInstance(context).create(LoginService::class.java)
+        val loginService = RetrofitConnection.getInstanceWithoutToken(context).create(LoginService::class.java)
         val call = loginService.requestNewAccessToken("Bearer $refreshToken")
         val response = call.execute()
         return if (response.isSuccessful) {
