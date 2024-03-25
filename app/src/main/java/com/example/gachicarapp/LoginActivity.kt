@@ -18,6 +18,7 @@ import com.kakao.sdk.user.UserApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
 
@@ -44,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 if (error != null) {
                     // Handle error
                 } else if (token != null) {
-                    Log.e(TAG, "로그인 성공 ${token.accessToken}")
+                    Timber.tag(TAG).e("로그인 성공 %s", token.accessToken)
                     kaKaoAuthViewModel.updateLoginState(true)
                     sendTokenToServer(token.accessToken)
                 }
@@ -73,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                         saveTokens(tokenResponse.data.accessToken, tokenResponse.data.refreshToken)
                     }
 
-                    Log.d("LoginActivity", "로그인 성공: 이동 준비됨");
+                    Timber.tag("LoginActivity").d("로그인 성공: 이동 준비됨");
 
                     // 메인 액티비티로 이동
                     navigateToMainActivity()
@@ -85,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<SocialSignUpandLogin>, t: Throwable) {
                 // 통신 실패 시 처리
-                Log.e("LoginActivity", "통신 실패: " + t.message)
+                Timber.tag("LoginActivity").e("통신 실패: %s", t.message)
             }
         })
     }
