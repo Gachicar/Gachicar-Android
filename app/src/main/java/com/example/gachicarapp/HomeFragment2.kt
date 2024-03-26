@@ -12,6 +12,7 @@ import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.MostUser
 import com.example.gachicarapp.retrofit.response.getCarInfo
 import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.service.CarService
 import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +21,7 @@ import retrofit2.Response
 class HomeFragment2 : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val carRetrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
+    private val carRetrofitAPI = RetrofitConnection.getInstance(requireContext()).create(CarService::class.java)
 
 
     override fun onCreateView(

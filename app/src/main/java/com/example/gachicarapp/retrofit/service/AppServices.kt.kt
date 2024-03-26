@@ -10,10 +10,6 @@ import retrofit2.http.*
 
 interface AppServices {
 
-    // Car 정보 API
-    @GET("/api/car")
-    fun getCarHomeInfo(): Call<getCarInfo>
-
     // 예약 데이터 API
     @GET("/api/report/reserve")
     fun getReserveData(): Call<ReserveData>

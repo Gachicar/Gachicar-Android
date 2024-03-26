@@ -17,7 +17,6 @@ import retrofit2.Response
 class GroupActivity : AppCompatActivity() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var binding_no_group: FragmentNoGroupBinding
-//    private lateinit var binding_create_group: FragmentStep01Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
