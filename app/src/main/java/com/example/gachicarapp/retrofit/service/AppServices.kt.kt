@@ -49,10 +49,5 @@ interface AppServices {
 
     @GET("/api/report")
     fun getDriveReport(): Call<DriveReport>
-
-    @GET("/api/report/most")
-    fun getMostUser(): Call<MostUser>
-
-    @PATCH("/api/user/")
-    fun patchNick(@Body userNickname: updateUserNickname): Call<updateUserNickname>
+  
 }

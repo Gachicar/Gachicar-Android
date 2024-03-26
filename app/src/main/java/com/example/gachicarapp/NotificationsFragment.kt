@@ -66,12 +66,12 @@ class NotificationsFragment : Fragment() {
             val userName = reportQualityData.data.userName
             val carName = reportQualityData.data.car.carName
             val carNumber = reportQualityData.data.car.carNumber
-            val reserveTime = reportQualityData.data.endTime
+            val reserveTime = reportQualityData.data.startTime
             val reservePlace = reportQualityData.data.destination
             val curLoc = reportQualityData.data.car.curLoc
             val latestDate = reportQualityData.data.car.latestDate
 
-            val reportText = "사용자의 최근 예약 내역 \n\n"+
+            val reportText =
                     "사용자: $userName\n\n" +
                     "차량 이름: $carName\n" +
                     "차량 번호: $carNumber\n\n" +
