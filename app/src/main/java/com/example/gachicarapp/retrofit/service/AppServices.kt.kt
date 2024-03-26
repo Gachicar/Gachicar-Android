@@ -10,6 +10,7 @@ import com.example.gachicarapp.retrofit.response.UpdateGroupDesc
 import com.example.gachicarapp.retrofit.response.UpdateGroupName
 import com.example.gachicarapp.retrofit.response.getCarInfo
 import com.example.gachicarapp.retrofit.response.statistic_r_Response
+import com.example.gachicarapp.retrofit.response.updateUserNickname
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -48,5 +49,5 @@ interface AppServices {
 
     @GET("/api/report")
     fun getDriveReport(): Call<DriveReport>
-
+  
 }

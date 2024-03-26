@@ -56,6 +56,16 @@ class ProfileFragment : Fragment() {
             val intent = Intent(activity, EditGActivity::class.java)
             startActivity(intent)
         }
+
+        binding.editNick.setOnClickListener {
+            val intent = Intent(activity, EditNickActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.reset.setOnClickListener {
+            val intent = Intent(activity, MemberSettingActivity1::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getGroupData() {
