@@ -1,5 +1,5 @@
 package com.example.gachicarapp.retrofit.response
 
-data class updateUserNickname(
+data class UserNickname(
     val userNickname: String
 )

@@ -56,12 +56,9 @@ class LoginActivity : AppCompatActivity() {
                     // 응답으로 받은 새로운 토큰들을 SharedPreferences에 저장
                     socialSignUpandLogin?.let { tokenResponse ->
                         saveTokens(tokenResponse.data.accessToken, tokenResponse.data.refreshToken)
+                        navigateToNickOrMain(tokenResponse.data.type)
                     }
 
-                    Timber.tag("LoginActivity").d("로그인 성공: 이동 준비됨");
-
-                    // 메인 액티비티로 이동
-                    navigateToMainActivity()
                 } else {
                     // 서버 응답이 실패한 경우
                     Log.e("LoginActivity", "서버 응답 에러: " + (response.errorBody()?.string() ?: "Unknown Error"))
@@ -82,6 +79,17 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("access_token", accessToken)
         editor.putString("refresh_token", refreshToken)
         editor.apply()
+    }
+
+    // 회원가입 시에는 닉네임 설정 화면으로 이동,
+    // 로그인 시에는 메인 화면으로 이동
+    private fun navigateToNickOrMain(type: String) {
+        if (type.equals("Signup")) {
+            val intent = Intent(this, EditNickActivity::class.java)
+            startActivity(intent)
+        } else if (type.equals("Login")) {
+            navigateToMainActivity()
+        }
     }
 
     private fun navigateToMainActivity() {

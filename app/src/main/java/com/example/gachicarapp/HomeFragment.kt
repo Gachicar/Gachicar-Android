@@ -87,9 +87,11 @@ class HomeFragment : Fragment() {
 
     // 최다 사용자 ui 업데이트
     private fun updateMostUserUI(data: MostUser) {
-        val userName = data.userName
-        Timber.tag("최다 사용자").e(userName)
-        binding.tvFrequentUser.text = userName
+        if (data != null) {
+            val userName = data.userName
+            Timber.tag("최다 사용자").e(userName)
+            binding.tvFrequentUser.text = userName
+        }
     }
 
     override fun onDestroyView() {

@@ -1,39 +1,14 @@
 package com.example.gachicarapp.retrofit.service
 
-import com.example.gachicarapp.retrofit.response.CreateGroup
-import com.example.gachicarapp.retrofit.response.DeleteGroup
 import com.example.gachicarapp.retrofit.response.DriveReport
-import com.example.gachicarapp.retrofit.response.GetGroupInfo
-import com.example.gachicarapp.retrofit.response.MostUser
 import com.example.gachicarapp.retrofit.response.ReserveData
-import com.example.gachicarapp.retrofit.response.UpdateGroupDesc
-import com.example.gachicarapp.retrofit.response.UpdateGroupName
 import com.example.gachicarapp.retrofit.response.getCarInfo
 import com.example.gachicarapp.retrofit.response.statistic_r_Response
-import com.example.gachicarapp.retrofit.response.updateUserNickname
 import retrofit2.Call
 import retrofit2.http.*
 
 
 interface AppServices {
-
-    // Group 관련 API
-    @POST("/api/group")
-    fun postGroupNameData(
-        @Body groupNameData: CreateGroup.GroupNameData
-    ): Call<CreateGroup>
-
-    @DELETE("/api/group/{groupId}")
-    fun deleteGroup(@Path("groupId") groupId: Int): Call<DeleteGroup>
-
-    @GET("/api/group")
-    fun getGroupInfo(): Call<GetGroupInfo>
-
-    @PATCH("/api/group/updateDesc")
-    fun patchGroupDesc(@Body desc: UpdateGroupDesc): Call<UpdateGroupDesc>
-
-    @PATCH("/api/group/updateName")
-    fun patchGroupName(@Body name: UpdateGroupName): Call<UpdateGroupName>
 
     // Car 정보 API
     @GET("/api/car")

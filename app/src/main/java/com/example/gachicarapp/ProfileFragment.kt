@@ -11,6 +11,7 @@ import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.DriveReport
 import com.example.gachicarapp.retrofit.response.GetGroupInfo
 import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.service.GroupService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +70,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getGroupData() {
-        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(GroupService::class.java)
 
         // API 호출
         retrofitAPI.getGroupInfo()
