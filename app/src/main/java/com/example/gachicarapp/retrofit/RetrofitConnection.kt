@@ -10,7 +10,8 @@ class RetrofitConnection {
     //객체를 하나만 생성하는 싱글턴 패턴을 적용합니다.
     companion object {
         //API 서버의 주소가 BASE_URL이 됩니다.
-        private const val BASE_URL = "http://172.16.18.42:9090"
+        private const val BASE_URL = "http://172.30.1.5:9090"
+
         private var INSTANCE: Retrofit? = null
         private var instanceWithoutToken: Retrofit? = null
 
