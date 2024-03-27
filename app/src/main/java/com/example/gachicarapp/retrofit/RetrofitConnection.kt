@@ -11,6 +11,7 @@ class RetrofitConnection {
     companion object {
         //API 서버의 주소가 BASE_URL이 됩니다.
         private const val BASE_URL = "http://172.30.1.5:9090"
+
         private var INSTANCE: Retrofit? = null
         private var instanceWithoutToken: Retrofit? = null
 

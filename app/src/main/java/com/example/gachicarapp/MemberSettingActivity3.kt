@@ -1,9 +1,9 @@
 package com.example.gachicarapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gachicarapp.databinding.ActivityStep01Binding
 import com.example.gachicarapp.databinding.ActivityStep03Binding
 
 class MemberSettingActivity3 : AppCompatActivity() {
@@ -30,8 +30,8 @@ class MemberSettingActivity3 : AppCompatActivity() {
             showToastMessage()
         }
         binding.step3nextbtn.setOnClickListener {
-
-            finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }

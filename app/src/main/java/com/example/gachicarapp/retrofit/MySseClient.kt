@@ -29,7 +29,7 @@ class MySseClient(private val context: Context) {
     fun startListening() {
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder()
-            .url("http://localhost:9090/api/notification/subscribe/1")
+            .url("http://172.16.18.42:9090/api/notification/subscribe/1")
             .build()
 
         val listener = object : EventSourceListener() {
