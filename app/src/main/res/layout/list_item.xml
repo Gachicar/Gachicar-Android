@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:stretchColumns="*">
 
-    <TextView
-        android:id="@+id/tvUserItem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textColor="#49494A"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+    <TableRow>
+        <TextView
+            android:id="@+id/tvStartLocationItem"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#49494A"
+            android:padding="8dp"
+            android:gravity="center"
+            android:textStyle="normal"/>
 
-    <TextView
-        android:id="@+id/tvStartLocationItem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textColor="#49494A"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvDestinationItem"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#49494A"
+            android:padding="8dp"
+            android:gravity="center"
+            android:textStyle="normal"/>
 
-    <TextView
-        android:id="@+id/tvDestinationItem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textColor="#49494A"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvStartTimeItem"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:padding="4dp"
+            android:gravity="center" />
 
-    <TextView
-        android:id="@+id/tvEndTimeItem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textColor="#49494A"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvEndTimeItem"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#49494A"
+            android:padding="4dp"
+            android:gravity="center"
+            android:textStyle="normal"/>
+    </TableRow>
 
-</LinearLayout>
+</TableLayout>
