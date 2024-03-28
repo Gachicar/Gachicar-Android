@@ -2,7 +2,7 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gachicarapp.databinding.FragmentReservationList2Binding
+import com.example.gachicarapp.databinding.FragmentReservationListItemBinding
 import com.example.gachicarapp.retrofit.response.Reservation
 
 class ReservationRecyclerViewAdapter(private var reservations: List<Reservation>) :
@@ -10,7 +10,7 @@ class ReservationRecyclerViewAdapter(private var reservations: List<Reservation>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
         val binding =
-            FragmentReservationList2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
+            FragmentReservationListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ReservationViewHolder(binding)
     }
 
@@ -27,7 +27,7 @@ class ReservationRecyclerViewAdapter(private var reservations: List<Reservation>
         notifyDataSetChanged()
     }
 
-    inner class ReservationViewHolder(private val binding: FragmentReservationList2Binding) :
+    inner class ReservationViewHolder(private val binding: FragmentReservationListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(reservation: Reservation) {

@@ -103,7 +103,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/fragment_reservation_list2" />
+        tools:listitem="@layout/fragment_reservation_list_item" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
