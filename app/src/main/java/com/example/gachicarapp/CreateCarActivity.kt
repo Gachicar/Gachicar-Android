@@ -73,7 +73,7 @@ class CreateCarActivity : AppCompatActivity() {
                         ).show()
 
                         // Start GroupActivity
-                        val intent = Intent(this@CreateCarActivity, MainActivity::class.java)
+                        val intent = Intent(this@CreateCarActivity, MemberSettingActivity3::class.java)
                         startActivity(intent)
 
                     } else {

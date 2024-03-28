@@ -1,6 +1,7 @@
 package com.example.gachicarapp.retrofit.service
 
 import com.example.gachicarapp.retrofit.request.CreateGroup
+import com.example.gachicarapp.retrofit.request.InviteMember
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.DeleteGroup
 import com.example.gachicarapp.retrofit.response.GetGroupInfo
@@ -32,4 +33,9 @@ interface GroupService {
 
     @PATCH("/api/group/updateName")
     fun patchGroupName(@Body name: UpdateGroupName): Call<UpdateGroupName>
+
+    @POST("/api/invite")
+    fun postInviteMember(
+        @Body nickname: InviteMember
+    ): Call<ApiResponse<InviteMember>>
 }
