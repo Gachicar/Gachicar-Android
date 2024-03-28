@@ -13,10 +13,11 @@ import com.example.gachicarapp.databinding.ActivityRecord2Binding
 import com.example.gachicarapp.databinding.FragmentHomeBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
+import com.example.gachicarapp.retrofit.response.Car
 import com.example.gachicarapp.retrofit.response.UserAndCount
 import com.example.gachicarapp.retrofit.response.UserData
 import com.example.gachicarapp.retrofit.response.getCarInfo
-import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.service.CarService
 import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var reportRetrofitAPI: ReportService
+    private lateinit var carRetrofitAPI: CarService
 
 
     override fun onCreateView(
@@ -46,6 +48,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         reportRetrofitAPI = RetrofitConnection.getInstance(requireContext()).create(ReportService::class.java)
+        carRetrofitAPI = RetrofitConnection.getInstance(requireContext()).create(CarService::class.java)
+
+        getCarInfo()
         getMostUserInGroup()
 
         // 예약 내역 조회하기 버튼에 클릭 리스너 설정
@@ -56,6 +61,35 @@ class HomeFragment : Fragment() {
             transaction.addToBackStack(null) // 백스택에 추가하여 이전 Fragment로 돌아갈 수 있도록 함
             transaction.commit()
         }
+    }
+
+    private fun getCarInfo() {
+        if (!isAdded) {
+            // Fragment가 attach되어 있지 않은 경우, API 요청 중단
+            return
+        }
+
+        // API 호출
+        carRetrofitAPI.getCarInfo().enqueue(object : Callback<ApiResponse<Car>> {
+            override fun onResponse(
+                call: Call<ApiResponse<Car>>,
+                response: Response<ApiResponse<Car>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.data?.let {
+                        binding.tvTotalDistance.text = it.totalDistance.toString()+" Km"    // 총 주행 거리
+                        binding.tvFrequentDestination.text = it.location    // 자주 가는 목적지
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse<Car>>, t: Throwable) {
+                // API 호출이 실패한 경우 에러 메시지를 출력합니다.
+                Toast.makeText(requireContext(), "API 호출 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                t.printStackTrace()
+            }
+
+        })
     }
 
     private fun getMostUserInGroup() {
