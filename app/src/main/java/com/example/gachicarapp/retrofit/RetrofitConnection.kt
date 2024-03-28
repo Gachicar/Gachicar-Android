@@ -11,7 +11,6 @@ class RetrofitConnection {
     companion object {
         //API 서버의 주소가 BASE_URL이 됩니다.
         private const val BASE_URL = "http://172.30.1.5:9090"
-
         private var INSTANCE: Retrofit? = null
         private var instanceWithoutToken: Retrofit? = null
 
@@ -46,7 +45,7 @@ class RetrofitConnection {
         }
 
         private fun createHttpClientWithToken(context: Context): OkHttpClient {
-            val loginService = createLoginService(context)
+            val loginService = createLoginService()
             val httpClient = OkHttpClient.Builder()
             httpClient.addInterceptor(TokenInterceptor(context, loginService)) // TokenInterceptor 추가
             return httpClient.build()
@@ -56,7 +55,7 @@ class RetrofitConnection {
             return OkHttpClient.Builder().build()
         }
 
-        private fun createLoginService(context: Context): LoginService {
+        fun createLoginService(): LoginService {
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
