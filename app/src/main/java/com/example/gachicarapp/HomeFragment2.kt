@@ -8,12 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.gachicarapp.databinding.FragmentHomeBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
-import com.example.gachicarapp.retrofit.response.ApiResponse
-import com.example.gachicarapp.retrofit.response.MostUser
 import com.example.gachicarapp.retrofit.response.getCarInfo
-import com.example.gachicarapp.retrofit.service.AppServices
 import com.example.gachicarapp.retrofit.service.CarService
-import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

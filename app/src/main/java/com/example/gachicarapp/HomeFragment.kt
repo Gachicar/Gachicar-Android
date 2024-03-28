@@ -13,7 +13,8 @@ import com.example.gachicarapp.databinding.ActivityRecord2Binding
 import com.example.gachicarapp.databinding.FragmentHomeBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
-import com.example.gachicarapp.retrofit.response.MostUser
+import com.example.gachicarapp.retrofit.response.UserAndCount
+import com.example.gachicarapp.retrofit.response.UserData
 import com.example.gachicarapp.retrofit.response.getCarInfo
 import com.example.gachicarapp.retrofit.service.AppServices
 import com.example.gachicarapp.retrofit.service.ReportService
@@ -65,33 +66,28 @@ class HomeFragment : Fragment() {
 
         // API 호출
         reportRetrofitAPI.getMostUserInGroup()
-                .enqueue(object : Callback<ApiResponse<MostUser>> {
+                .enqueue(object : Callback<ApiResponse<UserAndCount>> {
 
-                    override fun onResponse(call: Call<ApiResponse<MostUser>>, response: Response<ApiResponse<MostUser>>) {
+                    override fun onResponse(call: Call<ApiResponse<UserAndCount>>, response: Response<ApiResponse<UserAndCount>>) {
                         if (response.isSuccessful) {
                             // API 응답이 성공적으로 수신된 경우 UI 업데이트를 수행합니다.
-                            response.body()?.let { updateMostUserUI(it.data) }
+                            response.body()?.data?.let {
+                                // 최다 사용자 ui 업데이트
+                                binding.tvFrequentUser.text = it.user.userName    // 사용자 이름
+                                binding.tvUsageCount.text = it.count.toString()   // 횟수
+                            }
                         } else {
                             // API 응답이 실패한 경우 에러 메시지를 출력합니다.
                             Toast.makeText(requireContext(), "그룹 내 최다 사용자 정보 조회에 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
 
-                    override fun onFailure(call: Call<ApiResponse<MostUser>>, t: Throwable) {
+                    override fun onFailure(call: Call<ApiResponse<UserAndCount>>, t: Throwable) {
                         // API 호출이 실패한 경우 에러 메시지를 출력합니다.
                         Toast.makeText(requireContext(), "API 호출 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                         t.printStackTrace()
                     }
                 })
-    }
-
-    // 최다 사용자 ui 업데이트
-    private fun updateMostUserUI(data: MostUser) {
-        if (data != null) {
-            val userName = data.userName
-            Timber.tag("최다 사용자").e(userName)
-            binding.tvFrequentUser.text = userName
-        }
     }
 
     override fun onDestroyView() {
