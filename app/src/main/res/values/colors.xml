@@ -11,6 +11,7 @@
     <color name="light_gray">#F5F5F5</color>
     <color name="dark_gray">#CCCCCC</color>
     <color name="black_light">#797979</color>
+    <color name="black_light2">#33353F</color>
     <color name="tabBarBackgroundColor">#2C6CD9</color>
 
 </resources>
