@@ -21,6 +21,7 @@ import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale
 
 class HomeFragment : Fragment() {
     // 바인딩 객체 선언을 nullable로 초기화
@@ -40,7 +41,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // 인플레이터로 뷰 바인딩 클래스 인스턴스화
         _binding = ActivityRecord2Binding.inflate(inflater, container, false)
         val view = binding.root
@@ -91,7 +92,7 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let {
-                        binding.tvTotalDistance.text = it.totalDistance.toString()+" Km"    // 총 주행 거리
+                        binding.tvTotalDistance.text = String.format(Locale.getDefault(), "%d Km", it.totalDistance)    // 총 주행 거리
                         binding.tvFrequentDestination.text = it.location    // 자주 가는 목적지
                     }
                 }
@@ -139,10 +140,10 @@ class HomeFragment : Fragment() {
     }
 
     private  fun fetchReportList() {
-        val service = RetrofitConnection.getInstance(requireContext())?.create(ReportService::class.java)
-        val call = service?.getUserReports()
+        val service = RetrofitConnection.getInstance(requireContext()).create(ReportService::class.java)
+        val call = service.getUserReports()
 
-        call?.enqueue(object : Callback<ApiResponse<UserReportList>> {
+        call.enqueue(object : Callback<ApiResponse<UserReportList>> {
             override fun onResponse(
                 call: Call<ApiResponse<UserReportList>>,
                 response: Response<ApiResponse<UserReportList>>
