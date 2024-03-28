@@ -18,11 +18,9 @@ import com.example.gachicarapp.retrofit.response.UserAndCount
 import com.example.gachicarapp.retrofit.response.UserReportList
 import com.example.gachicarapp.retrofit.service.CarService
 import com.example.gachicarapp.retrofit.service.ReportService
-import com.google.android.gms.common.api.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.create
 
 class HomeFragment : Fragment() {
     // 바인딩 객체 선언을 nullable로 초기화
@@ -155,7 +153,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ApiResponse<UserReportList>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(requireContext(), "주행 리포트가 없습니다.", Toast.LENGTH_SHORT).show()
             }
 
         })
