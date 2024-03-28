@@ -3,7 +3,6 @@ package com.example.gachicarapp.retrofit.service
 import com.example.gachicarapp.retrofit.request.CreateCar
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.Car
-import com.example.gachicarapp.retrofit.response.getCarInfo
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.gachicarapp.databinding.ActivityReportBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
+import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.DriveReport
 import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,12 +25,12 @@ class ReportActivity : AppCompatActivity() {
     }
 
     private fun getReportData() {
-        val retrofitAPI = RetrofitConnection.getInstance(this).create(AppServices::class.java)
+        val retrofitAPI = RetrofitConnection.getInstance(this).create(ReportService::class.java)
 
         // API 호출
         retrofitAPI.getDriveReport()
-            .enqueue(object : Callback<DriveReport> {
-                override fun onResponse(call: Call<DriveReport>, response: Response<DriveReport>) {
+            .enqueue(object : Callback<ApiResponse<DriveReport>> {
+                override fun onResponse(call: Call<ApiResponse<DriveReport>>, response: Response<ApiResponse<DriveReport>>) {
                     if (response.isSuccessful) {
                         // API 응답이 성공적으로 수신된 경우 UI 업데이트를 수행합니다.
                         response.body()?.let { updateReportUI(it) }
@@ -38,7 +40,7 @@ class ReportActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<DriveReport>, t: Throwable) {
+                override fun onFailure(call: Call<ApiResponse<DriveReport>>, t: Throwable) {
                     // API 호출이 실패한 경우 에러 메시지를 출력합니다.
                     Toast.makeText(this@ReportActivity, "API 호출 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                     t.printStackTrace()
@@ -46,7 +48,7 @@ class ReportActivity : AppCompatActivity() {
             })
     }
 
-    private fun updateReportUI(reportQualityData: DriveReport) {
+    private fun updateReportUI(reportQualityData: ApiResponse<DriveReport>) {
         val userName = reportQualityData.data.userName
         val carName = reportQualityData.data.car.carName
         val carNumber = reportQualityData.data.car.carNumber

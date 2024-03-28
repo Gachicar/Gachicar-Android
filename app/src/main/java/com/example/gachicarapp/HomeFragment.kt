@@ -1,32 +1,36 @@
 package com.example.gachicarapp
 
+import ReportListRecyclerViewAdapter
 import ReservationListFragment
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gachicarapp.databinding.ActivityRecord2Binding
-import com.example.gachicarapp.databinding.FragmentHomeBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.Car
 import com.example.gachicarapp.retrofit.response.UserAndCount
-import com.example.gachicarapp.retrofit.response.UserData
-import com.example.gachicarapp.retrofit.response.getCarInfo
+import com.example.gachicarapp.retrofit.response.UserReportList
 import com.example.gachicarapp.retrofit.service.CarService
 import com.example.gachicarapp.retrofit.service.ReportService
+import com.google.android.gms.common.api.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
+import retrofit2.create
 
 class HomeFragment : Fragment() {
     // 바인딩 객체 선언을 nullable로 초기화
     private var _binding: ActivityRecord2Binding? = null
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ReportListRecyclerViewAdapter
+
 
     // 바인딩 객체에 대한 non-nullable 게터
     private val binding get() = _binding!!
@@ -41,9 +45,21 @@ class HomeFragment : Fragment() {
     ): View? {
         // 인플레이터로 뷰 바인딩 클래스 인스턴스화
         _binding = ActivityRecord2Binding.inflate(inflater, container, false)
+        val view = binding.root
+
+        recyclerView = _binding!!.list
+
+        // Set the adapter
+        adapter = ReportListRecyclerViewAdapter(emptyList())    // 초기에 빈 리스트로 어댑터 초기화
+        recyclerView.adapter = adapter
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        // API 데이터 가져오기
+        fetchReportList()
 
         // 이 프래그먼트의 루트 뷰 반환
-        return binding.root
+        return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -123,6 +139,29 @@ class HomeFragment : Fragment() {
                     }
                 })
     }
+
+    private  fun fetchReportList() {
+        val service = RetrofitConnection.getInstance(requireContext())?.create(ReportService::class.java)
+        val call = service?.getUserReports()
+
+        call?.enqueue(object : Callback<ApiResponse<UserReportList>> {
+            override fun onResponse(
+                call: Call<ApiResponse<UserReportList>>,
+                response: Response<ApiResponse<UserReportList>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.data?.let { adapter.updateData(it) }
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse<UserReportList>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

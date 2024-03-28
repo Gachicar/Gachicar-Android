@@ -2,12 +2,20 @@ package com.example.gachicarapp.retrofit.service
 
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.CarAndReport
+import com.example.gachicarapp.retrofit.response.DriveReport
 import com.example.gachicarapp.retrofit.response.UserAndCount
 import com.example.gachicarapp.retrofit.response.UserData
+import com.example.gachicarapp.retrofit.response.UserReportList
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface ReportService {
+
+    @GET("/api/report")
+    fun getDriveReport(): Call<ApiResponse<DriveReport>>
+
+    @GET("/api/report/all")
+    fun getUserReports(): Call<ApiResponse<UserReportList>>
 
     @GET("/api/report/most")
     fun getMostUserInGroup(): Call<ApiResponse<UserAndCount>>

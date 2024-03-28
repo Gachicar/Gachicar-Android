@@ -85,7 +85,6 @@
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
         </TableRow>
 
         <androidx.constraintlayout.widget.Barrier

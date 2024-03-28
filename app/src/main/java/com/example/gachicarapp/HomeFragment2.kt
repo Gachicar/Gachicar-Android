@@ -10,7 +10,6 @@ import com.example.gachicarapp.databinding.FragmentHomeBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.Car
-import com.example.gachicarapp.retrofit.response.getCarInfo
 import com.example.gachicarapp.retrofit.service.CarService
 import retrofit2.Call
 import retrofit2.Callback
