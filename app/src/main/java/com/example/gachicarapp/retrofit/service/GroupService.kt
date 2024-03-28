@@ -4,7 +4,7 @@ import com.example.gachicarapp.retrofit.request.CreateGroup
 import com.example.gachicarapp.retrofit.request.InviteMember
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.DeleteGroup
-import com.example.gachicarapp.retrofit.response.GetGroupInfo
+import com.example.gachicarapp.retrofit.response.GroupData
 import com.example.gachicarapp.retrofit.response.UpdateGroupDesc
 import com.example.gachicarapp.retrofit.response.UpdateGroupName
 import retrofit2.Call
@@ -26,7 +26,7 @@ interface GroupService {
     fun deleteGroup(@Path("groupId") groupId: Int): Call<DeleteGroup>
 
     @GET("/api/group")
-    fun getGroupInfo(): Call<GetGroupInfo>
+    fun getGroupInfo(): Call<ApiResponse<GroupData>>
 
     @PATCH("/api/group/updateDesc")
     fun patchGroupDesc(@Body desc: UpdateGroupDesc): Call<UpdateGroupDesc>

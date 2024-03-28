@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import com.example.gachicarapp.databinding.FragmentProfileBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
-import com.example.gachicarapp.retrofit.response.CarAndReport
 import com.example.gachicarapp.retrofit.response.DriveReport
-import com.example.gachicarapp.retrofit.response.GetGroupInfo
-import com.example.gachicarapp.retrofit.service.AppServices
+import com.example.gachicarapp.retrofit.response.GroupData
 import com.example.gachicarapp.retrofit.service.GroupService
 import com.example.gachicarapp.retrofit.service.ReportService
 import retrofit2.Call
@@ -45,6 +43,11 @@ class ProfileFragment : Fragment() {
         getGroupData()
 
         binding.inviteNewMember.setOnClickListener {
+            val intent = Intent(activity, MemberSettingActivity3::class.java)
+            startActivity(intent)
+        }
+
+        binding.deleteMember.setOnClickListener {
             val intent = Intent(activity, EditMActivity::class.java)
             startActivity(intent)
         }
@@ -75,19 +78,20 @@ class ProfileFragment : Fragment() {
 
         // API 호출
         retrofitAPI.getGroupInfo()
-            .enqueue(object : Callback<GetGroupInfo> {
-                override fun onResponse(call: Call<GetGroupInfo>, response: Response<GetGroupInfo>) {
-                    if (response.isSuccessful) {
+            .enqueue(object : Callback<ApiResponse<GroupData>> {
+                override fun onResponse(call: Call<ApiResponse<GroupData>>, response: Response<ApiResponse<GroupData>>) {
+                    if (response.isSuccessful && response.body() != null) {
                     // 성공적으로 데이터를 받아온 경우 UI 업데이트
-                        response.body()?.let { updateUIWithGroupData(it) }
-                } else {
-                    // 데이터를 받아오는데 실패한 경우
-                        // API 응답이 실패한 경우 에러 메시지를 출력합니다.
-                        Toast.makeText(requireContext(), "그룹정보 데이터를 가져오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
-                }
+                        response.body()?.data?.let { updateUIWithGroupData(it) }
+
+                    } else {
+                        // 데이터를 받아오는데 실패한 경우
+                            // API 응답이 실패한 경우 에러 메시지를 출력합니다.
+                            Toast.makeText(requireContext(), "그룹정보 데이터를 가져오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    }
             }
 
-            override fun onFailure(call: Call<GetGroupInfo>, t: Throwable) {
+            override fun onFailure(call: Call<ApiResponse<GroupData>>, t: Throwable) {
                 // API 호출 자체가 실패한 경우
                 Toast.makeText(requireContext(), "API 호출 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                 t.printStackTrace()
@@ -105,7 +109,7 @@ class ProfileFragment : Fragment() {
                     call: Call<ApiResponse<DriveReport>>,
                     response: Response<ApiResponse<DriveReport>>
                 ) {
-                    if (response.isSuccessful) {
+                    if (response.isSuccessful && response.body() != null) {
                         // API 응답이 성공적으로 수신된 경우 UI 업데이트를 수행합니다.
                         response.body()?.data?.let { updateReportUI(it) }
                     } else {
@@ -121,12 +125,12 @@ class ProfileFragment : Fragment() {
                 }
             })
     }
-    private fun updateUIWithGroupData(showGroupInfo: GetGroupInfo) {
+    private fun updateUIWithGroupData(showGroupInfo: GroupData) {
         // UI 업데이트 로직
-        val groupName = showGroupInfo.data.name
-        val description = showGroupInfo.data.desc
-        val groupLeader = showGroupInfo.data.groupManager.name
-        val carNickName = showGroupInfo.data.car.carName
+        val groupName = showGroupInfo.name
+        val description = showGroupInfo.desc
+        val groupLeader = showGroupInfo.groupManager.name
+        val carNickName = showGroupInfo.car.carName
 
         binding.tvGroupName.text = groupName
         binding.tvOneLineDesc.text = description

@@ -4,14 +4,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.gachicarapp.retrofit.sse.startSSEConnection
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ConfirmDialogInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_GachiCar)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        startSSEConnection(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -62,5 +65,9 @@ class MainActivity : AppCompatActivity() {
             findItem(R.id.nav_notifications).icon = ContextCompat.getDrawable(this@MainActivity, R.drawable.off_alarm_ic)
             findItem(R.id.nav_profile).icon = ContextCompat.getDrawable(this@MainActivity, R.drawable.off_profile_ic)
         }
+    }
+
+    override fun onClickYesButton(id: Int) {
+        TODO("Not yet implemented")
     }
 }

@@ -2,5 +2,6 @@
     <string name="app_name">GachiCar</string>
     <string name="dialog_no">"거절"</string>
     <string name="dialog_yes">수락</string>
+    <string name="notification_state">알림 ON</string>
 
 </resources>
