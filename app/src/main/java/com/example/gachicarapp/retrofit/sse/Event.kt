@@ -22,7 +22,7 @@ data class Event(val name: String = "", val data: String = "")
 
 // SSE 이벤트 수신 Flow 생성
 fun getEventsFlow(context: Context): Flow<Event> = flow {
-    val url = "http://172.30.1.5:9090/api/notification/subscribe"
+    val url = "http://172.30.1.95:9090/api/notification/subscribe"
 
     val accessToken = createHttpClientWithToken(context)
 

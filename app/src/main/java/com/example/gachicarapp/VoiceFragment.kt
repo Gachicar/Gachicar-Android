@@ -84,7 +84,7 @@ class VoiceFragment : Fragment(), TextToSpeech.OnInitListener {
     private fun connectToServer() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val serverIp = "172.30.1.5"
+                val serverIp = "172.30.1.95"
                 val serverPort = 9595
                 socket = Socket(serverIp, serverPort)
                 writer = PrintWriter(socket!!.getOutputStream(), true)

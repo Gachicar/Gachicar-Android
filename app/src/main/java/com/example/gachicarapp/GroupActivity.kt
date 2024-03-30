@@ -79,5 +79,10 @@ class GroupActivity : AppCompatActivity() {
             val intent = Intent(this, CreateGroupActivity::class.java)
             startActivity(intent)
         }
+
+        binding_no_group.btnLater.setOnClickListener {
+            val intentMain = Intent(this, MainActivity::class.java)
+            startActivity(intentMain)
+        }
     }
 }

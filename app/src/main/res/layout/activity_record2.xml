@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:text="200 Km"
         android:layout_gravity="left"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#363B64" />
     </LinearLayout>
@@ -96,7 +96,7 @@
                         android:layout_gravity="left"
                         android:text="이름"
                         android:textColor="#363B64"
-                        android:textSize="40sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -112,7 +112,7 @@
                             android:layout_gravity="left"
                             android:text="횟수"
                             android:textColor="#363B64"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="normal" />
 
                         <TextView
@@ -121,7 +121,7 @@
                             android:layout_gravity="left"
                             android:text="회"
                             android:textColor="#363B64"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="normal" />
                     </LinearLayout>
                 </LinearLayout>
@@ -153,7 +153,7 @@
                         android:text="장소"
                         android:layout_gravity="left"
                         android:textColor="#363B64"
-                        android:textSize="40sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
                     <LinearLayout
                         android:layout_width="match_parent"
