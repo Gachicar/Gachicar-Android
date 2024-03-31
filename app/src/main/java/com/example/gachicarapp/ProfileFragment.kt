@@ -159,7 +159,7 @@ class ProfileFragment : Fragment() {
         val description = showGroupInfo.desc
         val groupLeader = showGroupInfo.groupManager.name
         val nickname=showGroupInfo.groupManager.name
-//        val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
+//    val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
         val carNickName = showGroupInfo.car.carName
         val carNumber = showGroupInfo.car.carNumber
         val curLoc =  showGroupInfo.car.curLoc

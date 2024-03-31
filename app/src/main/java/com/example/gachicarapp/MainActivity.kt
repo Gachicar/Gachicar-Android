@@ -108,28 +108,24 @@ class MainActivity : AppCompatActivity(), ConfirmDialogInterface {
         }
     }
 
-    override fun onClickYesButton(id: Int) {
+    override fun onClickYesButton(groupId: Int) {
         // 그룹 초대 수락 처리
         val retrofitAPI = RetrofitConnection.getInstance(this).create(GroupService::class.java)
-        retrofitAPI.postAcceptInvitation(AcceptInvitation(groupId = id))
+        retrofitAPI.postAcceptInvitation(AcceptInvitation(groupId = groupId))
             .enqueue(object : Callback<ApiResponse<AcceptInvitation>> {
                 override fun onResponse(
                     call: Call<ApiResponse<AcceptInvitation>>,
                     response: Response<ApiResponse<AcceptInvitation>>
                 ) {
                     if (response.isSuccessful) {
-                        // 응답이 성공적인 경우, UI 업데이트나 성공 메시지 표시
                         Toast.makeText(applicationContext, "그룹 초대가 성공적으로 수락되었습니다.", Toast.LENGTH_SHORT).show()
-                        // 그룹 정보를 다시 불러오는 등의 후속 작업 수행
                         refreshGroupInfo()
                     } else {
-                        // 서버 응답에 실패한 경우
                         Toast.makeText(applicationContext, "그룹 초대 수락에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse<AcceptInvitation>>, t: Throwable) {
-                    // 네트워크 요청 자체에 실패한 경우
                     Toast.makeText(applicationContext, "네트워크 오류가 발생했습니다: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })

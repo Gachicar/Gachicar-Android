@@ -3,5 +3,5 @@
     <string name="dialog_no">"거절"</string>
     <string name="dialog_yes">수락</string>
     <string name="notification_state">알림 ON</string>
-
+    <string name="time_alarm_message">%1$s 님, %2$s 에 %3$s 으로 예약시간이 되었습니다.</string>
 </resources>

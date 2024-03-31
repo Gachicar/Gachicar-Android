@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!-- If you have any data binding variables -->
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvTimeAlarmMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:layout_centerInParent="true"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnTimeAlarmOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:textSize="15dp"
+        android:layout_below="@id/tvTimeAlarmMessage"
+        android:layout_marginTop="20dp"
+        android:background="#99CCFF"
+        android:textColor="@color/black" />
+
+</RelativeLayout>
+    </layout>
