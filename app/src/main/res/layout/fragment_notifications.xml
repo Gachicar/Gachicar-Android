@@ -66,7 +66,7 @@
         app:layout_constraintBottom_toBottomOf="@id/tv_location_title"
         app:layout_constraintStart_toEndOf="@id/tv_location_title"
         app:layout_constraintTop_toTopOf="@id/tv_location_title"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="30dp"/>
 <!--    <Button-->
 <!--    android:id="@+id/btn_detail_view"-->
 <!--    android:layout_width="100dp"-->
@@ -89,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="0.284" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"

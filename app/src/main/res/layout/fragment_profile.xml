@@ -131,21 +131,21 @@
                         android:id="@+id/tvOneLineDesc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="백엔드에서 받은 한줄소개"
+                        android:text=""
                         android:textSize="16sp"
                         android:textStyle="normal"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
-                <android.widget.Button
-                    android:id="@+id/editGroupDetail"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="#99CCFF"
-                    android:text="수정"/>
+<!--                <android.widget.Button-->
+<!--                    android:id="@+id/editGroupDetail"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:background="#99CCFF"-->
+<!--                    android:text="수정"/>-->
             </LinearLayout>
 
 
@@ -169,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="백엔드에서 받은 그룹장 이름"
+                    android:text=""
                     android:textSize="16sp"
                     android:textStyle="normal"
                     android:textColor="@color/black"
@@ -202,7 +202,7 @@
                         android:id="@+id/tvMember"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="백엔드에서 받은 멤버"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="normal" />
@@ -272,7 +272,7 @@
                             android:id="@+id/tvCarNickname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="백엔드에서 차량 별명"
+                            android:text=""
                             android:layout_marginStart="8dp"
                             android:textSize="16sp"
                             android:textStyle="normal"

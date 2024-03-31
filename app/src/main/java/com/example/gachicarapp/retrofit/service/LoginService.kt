@@ -11,7 +11,6 @@ import retrofit2.http.DELETE
 import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.Path
 
 interface LoginService {
     // 로그인 관련 API

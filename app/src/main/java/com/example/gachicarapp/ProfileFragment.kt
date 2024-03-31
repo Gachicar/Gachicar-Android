@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.gachicarapp.databinding.FragmentProfileBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
@@ -27,6 +29,7 @@ import timber.log.Timber
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
+    private lateinit var viewModel: SharedViewModel
     private val binding get() = _binding!!
 
 
@@ -49,7 +52,11 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getGroupData()
-
+        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel.userNickname.observe(viewLifecycleOwner, Observer { nickname ->
+            // 닉네임이 업데이트되면 UI 업데이트
+            binding.tvNickname.text = nickname
+        })
         binding.inviteNewMember.setOnClickListener {
             val intent = Intent(activity, MemberSettingActivity3::class.java)
             startActivity(intent)
@@ -65,10 +72,10 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.editGroupDetail.setOnClickListener {
-            val intent = Intent(activity, EditGActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.editGroupDetail.setOnClickListener {
+//            val intent = Intent(activity, EditGActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.editNick.setOnClickListener {
             val intent = Intent(activity, EditNickActivity::class.java)
@@ -85,8 +92,15 @@ class ProfileFragment : Fragment() {
 
 
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-
+        viewModel.groupData.observe(this, Observer { groupData ->
+            // 여기에서 groupData를 사용하여 UI 업데이트
+            updateUIWithGroupData(groupData)
+        })
+    }
     private fun getGroupData() {
         val retrofitAPI = RetrofitConnection.getInstance(requireContext()).create(GroupService::class.java)
 
@@ -158,13 +172,19 @@ class ProfileFragment : Fragment() {
         binding.tvNickname.text= nickname
         binding.tvCarNickname.text = carNickName
         binding.carNumber.text = carNumber
-//        binding.tvGroupMember.text=memberNames
+//      binding.tvGroupMember.text=memberNames
 //        binding.curLoc.text = curLoc
 //        binding.location.text= location
 //        binding.latestDate.text = latestDate.toString()
 
     }
+    private fun updateUIWithNick(showGroupInfo: GroupData) {
+        // UI 업데이트 로직
+        val nickname=showGroupInfo.groupManager.name
 
+        binding.tvNickname.text= nickname
+
+    }
 
     private fun updateReportUI(report: DriveReport) {
         val userName = report.userName

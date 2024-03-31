@@ -107,4 +107,11 @@ dependencies {
     // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
 
+    // ViewModel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    // LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+
 }

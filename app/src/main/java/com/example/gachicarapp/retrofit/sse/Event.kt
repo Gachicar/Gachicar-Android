@@ -81,7 +81,7 @@ fun startSSEConnection(context: Context) {
         eventsFlow.collect { event ->
             // 수신된 이벤트에 따라 처리
             when (event.name) {
-                "notify" -> Toast.makeText(context, "알림 설정 성공", Toast.LENGTH_SHORT).show()
+//                "notify" -> Toast.makeText(context, "알림 설정 성공", Toast.LENGTH_SHORT).show()
                 "invite" -> processInvitation(context as FragmentActivity, event.data)
             }
         }
