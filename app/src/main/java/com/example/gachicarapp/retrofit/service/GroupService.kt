@@ -1,5 +1,6 @@
 package com.example.gachicarapp.retrofit.service
 
+import com.example.gachicarapp.retrofit.request.AcceptInvitation
 import com.example.gachicarapp.retrofit.request.CreateGroup
 import com.example.gachicarapp.retrofit.request.InviteMember
 import com.example.gachicarapp.retrofit.response.ApiResponse
@@ -38,4 +39,11 @@ interface GroupService {
     fun postInviteMember(
         @Body nickname: InviteMember
     ): Call<ApiResponse<InviteMember>>
+
+    @POST("/api/invite/accept")
+    fun postAcceptInvitation(
+        @Body groupId: AcceptInvitation
+    ): Call<ApiResponse<AcceptInvitation>>
+
+
 }

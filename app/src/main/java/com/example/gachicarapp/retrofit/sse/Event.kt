@@ -106,5 +106,3 @@ fun processInvitation(fragmentActivity: FragmentActivity, data: String?) {
         }
     }
 }
-
-

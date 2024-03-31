@@ -60,12 +60,13 @@
 
     <ImageView
         android:layout_width="10dp"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_marginStart="9dp"
         android:src="@drawable/iocn_thunder"
         app:layout_constraintBottom_toBottomOf="@id/tv_location_title"
         app:layout_constraintStart_toEndOf="@id/tv_location_title"
-        app:layout_constraintTop_toTopOf="@id/tv_location_title" />
+        app:layout_constraintTop_toTopOf="@id/tv_location_title"
+        android:layout_marginTop="20dp"/>
 <!--    <Button-->
 <!--    android:id="@+id/btn_detail_view"-->
 <!--    android:layout_width="100dp"-->

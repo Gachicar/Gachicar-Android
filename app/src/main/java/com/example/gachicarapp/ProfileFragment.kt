@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.example.gachicarapp.databinding.FragmentProfileBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
+import com.example.gachicarapp.retrofit.response.Car
 import com.example.gachicarapp.retrofit.response.DriveReport
 import com.example.gachicarapp.retrofit.response.GroupData
 import com.example.gachicarapp.retrofit.response.deleteUser
@@ -144,15 +145,27 @@ class ProfileFragment : Fragment() {
         val description = showGroupInfo.desc
         val groupLeader = showGroupInfo.groupManager.name
         val nickname=showGroupInfo.groupManager.name
+//        val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
         val carNickName = showGroupInfo.car.carName
+        val carNumber = showGroupInfo.car.carNumber
+        val curLoc =  showGroupInfo.car.curLoc
+        val location =  showGroupInfo.car.location
+        val latestDate = showGroupInfo.car.latestDate
 
         binding.tvGroupName.text = groupName
         binding.tvOneLineDesc.text = description
         binding.tvGroupLeaderName.text = groupLeader
         binding.tvNickname.text= nickname
         binding.tvCarNickname.text = carNickName
+        binding.carNumber.text = carNumber
+//        binding.tvGroupMember.text=memberNames
+//        binding.curLoc.text = curLoc
+//        binding.location.text= location
+//        binding.latestDate.text = latestDate.toString()
 
     }
+
+
     private fun updateReportUI(report: DriveReport) {
         val userName = report.userName
         val carName = report.car.carName
@@ -164,7 +177,7 @@ class ProfileFragment : Fragment() {
         val endTime = report.endTime
 
 
-        binding.carNumber.text = carNumber
+//        binding.carNumber.text = carNumber
         binding.curLoc.text = departure
         binding.location.text= destination
         binding.latestDate.text = startTime.toString()

@@ -11,6 +11,7 @@ import com.example.gachicarapp.databinding.DialogConfirmBinding
 
 interface ConfirmDialogInterface {
     fun onClickYesButton(id: Int)
+    fun onClickNoButton(id: Int)
 }
 
 class ConfirmDialog(
