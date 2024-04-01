@@ -1,12 +1,14 @@
 package com.example.gachicarapp.retrofit.response
 
+import com.google.gson.annotations.SerializedName
+
 data class GroupData(
     val car: Car,
     val desc: String,
     val groupId: Int,
     val groupManager: GroupManager,
     val name: String,
-    val members: List<Member>
+    @SerializedName("memberList") val members: List<Member>
 ) {
     data class GroupManager(
         val id: Int,

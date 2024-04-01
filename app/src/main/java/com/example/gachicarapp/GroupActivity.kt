@@ -107,6 +107,7 @@ class GroupActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         binding_no_group.btnLater.setOnClickListener {
             val intentMain = Intent(this, GroupLaterActivity::class.java)
             startActivity(intentMain)

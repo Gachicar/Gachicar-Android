@@ -26,12 +26,12 @@ class GroupLaterActivity : AppCompatActivity() {
         setTheme(R.style.Theme_GachiCar)
 
         super.onCreate(savedInstanceState)
-
+        getGroupData()
         binding = ActivityGrouplaterBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
-        getGroupData()
+
 
         binding.editNick.setOnClickListener {
             val intent = Intent(this, EditNickActivity::class.java)

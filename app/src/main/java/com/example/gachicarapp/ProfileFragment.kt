@@ -1,4 +1,5 @@
 package com.example.gachicarapp
+
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -159,7 +160,7 @@ class ProfileFragment : Fragment() {
         val description = showGroupInfo.desc
         val groupLeader = showGroupInfo.groupManager.name
         val nickname=showGroupInfo.groupManager.name
-//    val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
+        val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
         val carNickName = showGroupInfo.car.carName
         val carNumber = showGroupInfo.car.carNumber
         val curLoc =  showGroupInfo.car.curLoc
@@ -172,6 +173,7 @@ class ProfileFragment : Fragment() {
         binding.tvNickname.text= nickname
         binding.tvCarNickname.text = carNickName
         binding.carNumber.text = carNumber
+        binding.tvMember.text= memberNames
 //      binding.tvGroupMember.text=memberNames
 //        binding.curLoc.text = curLoc
 //        binding.location.text= location
