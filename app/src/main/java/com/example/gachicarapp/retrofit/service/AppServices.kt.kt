@@ -1,7 +1,5 @@
 package com.example.gachicarapp.retrofit.service
 
-import com.example.gachicarapp.retrofit.response.ApiResponse
-import com.example.gachicarapp.retrofit.response.DriveReport
 import com.example.gachicarapp.retrofit.response.ReserveData
 import com.example.gachicarapp.retrofit.response.statistic_r_Response
 import retrofit2.Call

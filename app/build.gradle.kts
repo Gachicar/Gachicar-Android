@@ -33,8 +33,11 @@ android {
         // local.properties 파일에서 변수를 읽어와서 buildConfigField로 사용
         buildConfigField("String", "NATIVE_APP_KEY", "${properties["NATIVE_APP_KEY"]}")
         buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "${properties["KAKAO_NATIVE_APP_KEY"]}")
+        buildConfigField("String", "SERVER_IP_ADDRESS", "${properties["SERVER_IP_ADDRESS"]}")
+
         manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = "${properties["KAKAO_NATIVE_APP_KEY"]}"
         manifestPlaceholders["NATIVE_APP_KEY"] = "${properties["NATIVE_APP_KEY_NO_QUOTES"]}"
+        manifestPlaceholders["SERVER_IP_ADDRESS"] = "${properties["SERVER_IP_ADDRESS"]}"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
