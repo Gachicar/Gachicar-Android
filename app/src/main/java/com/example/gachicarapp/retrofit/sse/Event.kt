@@ -3,8 +3,13 @@ package com.example.gachicarapp.retrofit.sse
 import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.example.gachicarapp.AcceptConfirmDialog
+import com.example.gachicarapp.AcceptConfirmDialogInterface
+import com.example.gachicarapp.BuildConfig.SERVER_IP_ADDRESS
+import com.example.gachicarapp.CarDepartureDialog
 import com.example.gachicarapp.ConfirmDialog
 import com.example.gachicarapp.ConfirmDialogInterface
+import com.example.gachicarapp.TimeAlarmDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -22,10 +27,10 @@ data class Event(val name: String = "", val data: String = "")
 
 // SSE 이벤트 수신 Flow 생성
 fun getEventsFlow(context: Context): Flow<Event> = flow {
-    val url = "http://172.30.1.5:9090/api/notification/subscribe"
+    val serverIp = SERVER_IP_ADDRESS
+    val url = "http://${serverIp}:9090/api/notification/subscribe"
 
     val accessToken = createHttpClientWithToken(context)
-
 
     // Gets HttpURLConnection. Blocking function.  Should run in background
     val conn = (URL(url).openConnection() as HttpURLConnection).also {
@@ -83,6 +88,9 @@ fun startSSEConnection(context: Context) {
             when (event.name) {
                 "notify" -> Toast.makeText(context, "알림 설정 성공", Toast.LENGTH_SHORT).show()
                 "invite" -> processInvitation(context as FragmentActivity, event.data)
+                "accept" -> processAcceptance(context as FragmentActivity, event.data )// 그룹 초대 수락 이벤트 처리
+                "reminder" -> processReminder(context as FragmentActivity, event.data ) // 예약 시간 알림 처리
+                "car" -> processCarDeparture(context as FragmentActivity, event.data ) // 차량 출발 알림 처리
             }
         }
     }
@@ -107,4 +115,82 @@ fun processInvitation(fragmentActivity: FragmentActivity, data: String?) {
     }
 }
 
+// 그룹 초대 수락 이벤트를 처리하는 함수
+fun processAcceptance(context: Context, data: String?) {
+    data?.let { jsonData ->
+        try {
+            val jsonObject = JSONObject(jsonData)
+            val sender = jsonObject.getString("sender")
+            val groupId = jsonObject.getInt("groupId")
+            val createdAt = jsonObject.getString("createdAt")
 
+
+            Timber.tag("Acceptance").d("Group invitation accepted by $sender for group $groupId created at $createdAt")
+
+
+            if (context is FragmentActivity) {
+
+                val dialog = AcceptConfirmDialog(object : AcceptConfirmDialogInterface {
+                    override fun onAcceptanceConfirmed() {
+
+                    }
+                }, sender, 1, createdAt)
+                dialog.show(context.supportFragmentManager, "AcceptConfirmDialog")
+            } else {
+
+                Toast.makeText(context, "$sender 님이 그룹 초대를 수락했습니다.", Toast.LENGTH_LONG).show()
+            }
+
+        } catch (e: JSONException) {
+            Timber.e(e, "Error processing acceptance event")
+        }
+    }
+}
+
+
+// 예약 시간 알림 처리 함수
+fun processReminder(context: Context, data: String?) {
+    data?.let { jsonData ->
+        try {
+            val jsonObject = JSONObject(jsonData)
+            val userName = jsonObject.getString("userName")
+            val startTime = jsonObject.getString("startTime")
+            val destination = jsonObject.getString("destination")
+
+            // 로깅
+            Timber.tag("알림").d("$userName 님의 예약 시간 알림 - $destination 에 $startTime 에 도착 예정")
+
+            if (context is FragmentActivity) {
+                // 다이얼로그 표시
+                val dialog = TimeAlarmDialog(userName, startTime, destination)
+                dialog.show(context.supportFragmentManager, "TimeAlarmDialog")
+            }
+        } catch (e: JSONException) {
+            Timber.e(e, "예약 시간 알림 이벤트 처리 중 오류 발생")
+        }
+    }
+}
+
+
+
+// 차량 출발 알림 처리 함수
+fun processCarDeparture(fragmentActivity: FragmentActivity, data: String?) {
+    data?.let { jsonData ->
+        try {
+            val jsonObject = JSONObject(jsonData)
+            val userName = jsonObject.getString("userName")
+            val startTime = jsonObject.getString("startTime")
+            val destination = jsonObject.getString("destination")
+
+            // 차량 출발 알림 로깅
+            Timber.tag("차량출발").d("$userName 님의 $startTime 에 예약된 $destination 으로의 차량 출발 알림")
+
+            // 차량 출발 정보를 담은 다이얼로그 표시
+            val dialog = CarDepartureDialog(userName, startTime, destination)
+            dialog.show(fragmentActivity.supportFragmentManager, "CarDepartureDialog")
+
+        } catch (e: JSONException) {
+            Timber.e(e, "차량 출발 알림 이벤트 처리 중 오류 발생")
+        }
+    }
+}

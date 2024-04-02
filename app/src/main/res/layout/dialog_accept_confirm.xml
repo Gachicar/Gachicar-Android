@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!-- 여기에 필요한 데이터 바인딩 변수 선언 (필요시) -->
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="24dp"
+        android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/tvAcceptConfirmMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="그룹 초대가 수락되었습니다."
+        android:layout_centerInParent="true"
+        android:textSize="13dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="16dp" />
+
+    <Button
+        android:id="@+id/btnAcceptConfirmOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:layout_below="@id/tvAcceptConfirmMessage"
+        android:layout_marginTop="24dp"
+        android:background="#99CCFF"
+        android:textColor="@color/black"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</RelativeLayout>
+    </layout>

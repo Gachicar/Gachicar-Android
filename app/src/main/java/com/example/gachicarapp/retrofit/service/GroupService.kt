@@ -1,5 +1,6 @@
 package com.example.gachicarapp.retrofit.service
 
+import com.example.gachicarapp.retrofit.request.AcceptInvitation
 import com.example.gachicarapp.retrofit.request.CreateGroup
 import com.example.gachicarapp.retrofit.request.InviteMember
 import com.example.gachicarapp.retrofit.response.ApiResponse
@@ -11,6 +12,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -38,4 +40,11 @@ interface GroupService {
     fun postInviteMember(
         @Body nickname: InviteMember
     ): Call<ApiResponse<InviteMember>>
+
+    @POST("/api/invite/accept")
+    fun postAcceptInvitation(
+        @Body groupId: AcceptInvitation
+    ): Call<ApiResponse<AcceptInvitation>>
+
+
 }

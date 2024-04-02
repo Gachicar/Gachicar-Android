@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
 import com.example.gachicarapp.retrofit.response.UserNickname
@@ -18,9 +19,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EditNickActivity : AppCompatActivity() {
+    private lateinit var viewModel: SharedViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nickname)
+
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         val nickEditText: EditText = findViewById(R.id.editTextNick) // EditText ID 추가
         val submitNickButton: Button = findViewById(R.id.submitNickButton)
@@ -53,9 +57,11 @@ class EditNickActivity : AppCompatActivity() {
             retrofitAPI.patchNick(UserNickname(nick)).enqueue(object : Callback<ApiResponse<UserNickname>> {
                 override fun onResponse(call: Call<ApiResponse<UserNickname>>, response: Response<ApiResponse<UserNickname>>) {
                     if (response.isSuccessful) {
+
                         val responseBody = response.body()
                         if (responseBody != null) {
                             if (responseBody.code.equals(201)) {
+
                                 Toast.makeText(
                                     this@EditNickActivity,
                                     "닉네임이 업데이트되었습니다.",

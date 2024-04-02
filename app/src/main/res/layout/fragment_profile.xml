@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
         android:gravity="center_horizontal">
@@ -29,7 +29,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="129dp"
+            android:layout_height="150dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/groupborder"
             android:orientation="vertical"
@@ -42,7 +42,7 @@
                 android:padding="10dp">
 
                 <LinearLayout
-                    android:layout_width="521dp"
+                    android:layout_width="550dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal">
@@ -59,7 +59,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="님, 안녕하세요."
+                        android:text="님,안녕하세요."
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="normal" />
@@ -131,21 +131,21 @@
                         android:id="@+id/tvOneLineDesc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="백엔드에서 받은 한줄소개"
+                        android:text=""
                         android:textSize="16sp"
                         android:textStyle="normal"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
-                <android.widget.Button
-                    android:id="@+id/editGroupDetail"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="#99CCFF"
-                    android:text="수정"/>
+<!--                <android.widget.Button-->
+<!--                    android:id="@+id/editGroupDetail"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:background="#99CCFF"-->
+<!--                    android:text="수정"/>-->
             </LinearLayout>
 
 
@@ -169,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="백엔드에서 받은 그룹장 이름"
+                    android:text=""
                     android:textSize="16sp"
                     android:textStyle="normal"
                     android:textColor="@color/black"
@@ -202,7 +202,7 @@
                         android:id="@+id/tvMember"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="백엔드에서 받은 멤버"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="normal" />
@@ -272,7 +272,7 @@
                             android:id="@+id/tvCarNickname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="백엔드에서 차량 별명"
+                            android:text=""
                             android:layout_marginStart="8dp"
                             android:textSize="16sp"
                             android:textStyle="normal"
@@ -396,5 +396,18 @@
                 android:text="초기화"/>
 
         </LinearLayout>
+
+        <android.widget.Button
+            android:id="@+id/withdrawl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="right"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black_light"
+            android:background="@android:color/transparent"
+            android:text="탈퇴하기 ->"/>
     </LinearLayout>
 </ScrollView>

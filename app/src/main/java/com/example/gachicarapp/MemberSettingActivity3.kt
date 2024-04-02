@@ -32,6 +32,7 @@ class MemberSettingActivity3 : AppCompatActivity() {
         binding.invite1.setOnClickListener {
             val nickname1 = nicknameEditText1.text.toString() // 변수명 변경
             inviteByNickname(nickname1)
+
         }
 
         // invite2 버튼 클릭 리스너 설정

@@ -20,10 +20,12 @@ android {
     viewBinding{
         enable = true
     }
-
+    dataBinding {
+        enable = true
+    }
     defaultConfig {
         applicationId = "com.example.gachicarapp"
-        minSdk = 26
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -31,8 +33,11 @@ android {
         // local.properties 파일에서 변수를 읽어와서 buildConfigField로 사용
         buildConfigField("String", "NATIVE_APP_KEY", "${properties["NATIVE_APP_KEY"]}")
         buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "${properties["KAKAO_NATIVE_APP_KEY"]}")
+        buildConfigField("String", "SERVER_IP_ADDRESS", "${properties["SERVER_IP_ADDRESS"]}")
+
         manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = "${properties["KAKAO_NATIVE_APP_KEY"]}"
         manifestPlaceholders["NATIVE_APP_KEY"] = "${properties["NATIVE_APP_KEY_NO_QUOTES"]}"
+        manifestPlaceholders["SERVER_IP_ADDRESS"] = "${properties["SERVER_IP_ADDRESS"]}"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -70,8 +75,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.legacy.support.v4)
-    implementation(libs.androidx.recyclerview)
+//    implementation(libs.androidx.legacy.support.v4)
+//    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -106,5 +111,12 @@ dependencies {
 
     // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // ViewModel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    // LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
 
 }
