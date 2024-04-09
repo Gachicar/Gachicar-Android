@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.gachicarapp.databinding.FragmentProfileBinding
 import com.example.gachicarapp.retrofit.RetrofitConnection
 import com.example.gachicarapp.retrofit.response.ApiResponse
-import com.example.gachicarapp.retrofit.response.Car
 import com.example.gachicarapp.retrofit.response.DriveReport
 import com.example.gachicarapp.retrofit.response.GroupData
 import com.example.gachicarapp.retrofit.response.deleteUser
@@ -28,6 +27,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
+// 마이페이지 탭 화면
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private lateinit var viewModel: SharedViewModel
@@ -73,10 +73,6 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-//        binding.editGroupDetail.setOnClickListener {
-//            val intent = Intent(activity, EditGActivity::class.java)
-//            startActivity(intent)
-//        }
 
         binding.editNick.setOnClickListener {
             val intent = Intent(activity, EditNickActivity::class.java)
@@ -154,6 +150,7 @@ class ProfileFragment : Fragment() {
                 }
             })
     }
+
     private fun updateUIWithGroupData(showGroupInfo: GroupData) {
         // UI 업데이트 로직
         val groupName = showGroupInfo.name
@@ -163,8 +160,6 @@ class ProfileFragment : Fragment() {
         val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
         val carNickName = showGroupInfo.car.carName
         val carNumber = showGroupInfo.car.carNumber
-        val curLoc =  showGroupInfo.car.curLoc
-        val location =  showGroupInfo.car.location
         val latestDate = showGroupInfo.car.latestDate
 
         binding.tvGroupName.text = groupName
@@ -174,35 +169,14 @@ class ProfileFragment : Fragment() {
         binding.tvCarNickname.text = carNickName
         binding.carNumber.text = carNumber
         binding.tvMember.text= memberNames
-//      binding.tvGroupMember.text=memberNames
-//        binding.curLoc.text = curLoc
-//        binding.location.text= location
-        binding.latestDate.text = latestDate.toString()
-
-    }
-    private fun updateUIWithNick(showGroupInfo: GroupData) {
-        // UI 업데이트 로직
-        val nickname=showGroupInfo.groupManager.name
-
-        binding.tvNickname.text= nickname
-
+        binding.latestDate.text = latestDate
     }
 
     private fun updateReportUI(report: DriveReport) {
-        val userName = report.userName
-        val carName = report.car.carName
-        val carNumber = report.car.carNumber
         val departure = report.departure
         val destination = report.destination
-        val driveTime = report.driveTime
-        val startTime = report.startTime
-        val endTime = report.endTime
-
-
-//        binding.carNumber.text = carNumber
         binding.curLoc.text = departure
         binding.location.text= destination
-//        binding.latestDate.text = startTime.toString()
 
     }
 

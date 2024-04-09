@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+// 최근 주행 화면
 class ReportActivity : AppCompatActivity() {
     lateinit var binding: ActivityReportBinding
 

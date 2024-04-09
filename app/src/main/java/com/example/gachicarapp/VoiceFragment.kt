@@ -31,6 +31,7 @@
     import java.net.Socket
     import java.util.Locale
 
+    // 음성 비서 화면
     class VoiceFragment : Fragment(), TextToSpeech.OnInitListener {
 
         private var socket: Socket? = null

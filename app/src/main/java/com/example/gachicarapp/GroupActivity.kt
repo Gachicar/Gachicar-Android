@@ -71,12 +71,9 @@ class GroupActivity : AppCompatActivity() {
         val description = showGroupInfo.desc
         val groupLeader = showGroupInfo.groupManager.name
         val nickname=showGroupInfo.groupManager.name
-        //val memberNames = showGroupInfo.members.joinToString(separator = ", ") { it.userName }
         val carNickName = showGroupInfo.car.carName
         val carNumber = showGroupInfo.car.carNumber
-        val curLoc =  showGroupInfo.car.curLoc
-        val location =  showGroupInfo.car.location
-        val latestDate = showGroupInfo.car.latestDate
+
 
         binding.tvGroupName.text = groupName
         binding.tvOneLineDesc.text = description
@@ -84,10 +81,6 @@ class GroupActivity : AppCompatActivity() {
         binding.tvNickname.text= nickname
         binding.tvCarNickname.text = carNickName
         binding.carNumber.text = carNumber
-        // binding.tvGroupMember.text=memberNames
-//        binding.curLoc.text = curLoc
-//        binding.location.text= location
-//        binding.latestDate.text = latestDate.toString()
 
     }
 

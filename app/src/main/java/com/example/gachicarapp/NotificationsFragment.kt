@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+// 알림 탭 화면
 class NotificationsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
