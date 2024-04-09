@@ -72,7 +72,7 @@ class NotificationsFragment : Fragment() {
             val latestDate = reportQualityData.data.car.latestDate
 
             val reportText =
-                    "사용자: $userName\n\n" +
+//                    "사용자: $userName\n\n" +
                     "차량 이름: $carName\n" +
                     "차량 번호: $carNumber\n\n" +
                     "예약시간: $reserveTime\n" +

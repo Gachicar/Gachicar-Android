@@ -177,7 +177,7 @@ class ProfileFragment : Fragment() {
 //      binding.tvGroupMember.text=memberNames
 //        binding.curLoc.text = curLoc
 //        binding.location.text= location
-//        binding.latestDate.text = latestDate.toString()
+        binding.latestDate.text = latestDate.toString()
 
     }
     private fun updateUIWithNick(showGroupInfo: GroupData) {
@@ -202,7 +202,7 @@ class ProfileFragment : Fragment() {
 //        binding.carNumber.text = carNumber
         binding.curLoc.text = departure
         binding.location.text= destination
-        binding.latestDate.text = startTime.toString()
+//        binding.latestDate.text = startTime.toString()
 
     }
 

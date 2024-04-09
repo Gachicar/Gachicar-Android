@@ -38,8 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="102dp"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="550dp"
@@ -80,7 +79,8 @@
                         android:text="설정"
                         android:textColor="@color/white"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"/>
 
                     <android.widget.Button
                         android:id="@+id/notification_state_btn"
@@ -91,7 +91,8 @@
                         android:text="@string/notification_state"
                         android:textColor="@color/white"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"/>
                 </LinearLayout>
 
             </LinearLayout>

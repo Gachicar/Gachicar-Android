@@ -20,15 +20,10 @@ class AcceptConfirmDialog(
     private val createdAt: String
 ) : DialogFragment() {
 
-    private var _binding: DialogAcceptConfirmBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: DialogAcceptConfirmBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = DialogAcceptConfirmBinding.inflate(inflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DialogAcceptConfirmBinding.inflate(inflater, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         setupDialog()
@@ -42,13 +37,12 @@ class AcceptConfirmDialog(
         binding.tvAcceptConfirmMessage.text = content
 
         binding.btnAcceptConfirmOk.setOnClickListener {
-            dialogInterface.onAcceptanceConfirmed() // 확인 버튼 클릭 시 인터페이스 메소드 호출
-            dismiss() // 다이얼로그 닫기
+            dialogInterface.onAcceptanceConfirmed()
+            dismiss()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }

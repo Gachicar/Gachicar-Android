@@ -90,7 +90,7 @@ fun startSSEConnection(context: Context) {
                 "invite" -> processInvitation(context as FragmentActivity, event.data)
                 "accept" -> processAcceptance(context as FragmentActivity, event.data )// 그룹 초대 수락 이벤트 처리
                 "reminder" -> processReminder(context as FragmentActivity, event.data ) // 예약 시간 알림 처리
-                "car" -> processCarDeparture(context as FragmentActivity, event.data ) // 차량 출발 알림 처리
+                "car" -> Toast.makeText(context, "예약시간 30분 전이 되어 차량이 출발합니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -116,36 +116,28 @@ fun processInvitation(fragmentActivity: FragmentActivity, data: String?) {
 }
 
 // 그룹 초대 수락 이벤트를 처리하는 함수
-fun processAcceptance(context: Context, data: String?) {
+fun processAcceptance(fragmentActivity: FragmentActivity, data: String?) {
     data?.let { jsonData ->
         try {
             val jsonObject = JSONObject(jsonData)
             val sender = jsonObject.getString("sender")
             val groupId = jsonObject.getInt("groupId")
-            val createdAt = jsonObject.getString("createdAt")
-
+            val createdAt = jsonObject.getString("created_at")
 
             Timber.tag("Acceptance").d("Group invitation accepted by $sender for group $groupId created at $createdAt")
 
-
-            if (context is FragmentActivity) {
-
-                val dialog = AcceptConfirmDialog(object : AcceptConfirmDialogInterface {
-                    override fun onAcceptanceConfirmed() {
-
-                    }
-                }, sender, 1, createdAt)
-                dialog.show(context.supportFragmentManager, "AcceptConfirmDialog")
-            } else {
-
-                Toast.makeText(context, "$sender 님이 그룹 초대를 수락했습니다.", Toast.LENGTH_LONG).show()
-            }
-
+            val dialog = AcceptConfirmDialog(object : AcceptConfirmDialogInterface {
+                override fun onAcceptanceConfirmed() {
+                    // 수락 확인 시 수행할 작업
+                }
+            }, sender, groupId, createdAt)
+            dialog.show(fragmentActivity.supportFragmentManager, "AcceptConfirmDialog")
         } catch (e: JSONException) {
             Timber.e(e, "Error processing acceptance event")
         }
     }
 }
+
 
 
 // 예약 시간 알림 처리 함수

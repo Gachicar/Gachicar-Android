@@ -100,7 +100,7 @@
                     reader = BufferedReader(InputStreamReader(socket!!.getInputStream()))
 
                     // 사용자 ID를 서버로 전송
-//                    var userId = getUserId()
+//                    var userId = getUserId()n`
                     var userId = 1L
                     writer?.println(userId)
 

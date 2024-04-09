@@ -30,8 +30,8 @@
         android:textSize="15dp"
         android:layout_below="@id/tvTimeAlarmMessage"
         android:layout_marginTop="20dp"
-        android:background="#99CCFF"
+        android:background="@color/blue"
         android:textColor="@color/black" />
 
 </RelativeLayout>
-    </layout>
+</layout>
